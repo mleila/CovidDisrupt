@@ -1,7 +1,7 @@
 import os
 from distutils.core import setup
 
-scripts = [f for f in os.listdir('./bin')]
+scripts = [os.path.join('bin', f) for f in os.listdir('./bin')]
 packages = ['covid']
 
 setup(name='covid',
