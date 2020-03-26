@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+import argparse
+
+from covid.config import Config, Secrets
+from covid.ingestion.newsapi import create_newsapi_client, query_articles
+from covid.utils.io import write_text_to_s3
+from covid.utils.aws import create_s3_resource
+
+
+def get_cli_args():
+    parser = argparse.ArgumentParser(description='Data Ingestion Tool')
+    parser.add_argument('-t', '--topic', type=str)
+    parser.add_argument('-k', '--keywords', type=str)
+    parser.add_argument('-s', '--start-date', type=str)
+    parser.add_argument('-e', '--end-date', type=str)
+
+    # default
+    parser.add_argument('--config', type=str, default='config.json')
+    parser.add_argument('--secret', type=str, default='secrets.json')
+
+    return parser.parse_args()
+
+
+def upload_articles_to_s3(
+        s3_resource,
+        bucket,
+        topic,
+        articles):
+    """
+    Save article descriptions to one file in s3.
+    Each description is on a separate line.
+    """
+
+    path = f'raw/{topic}/articles.txt'
+    text = ''
+    for article in articles:
+        text += article['description'] + ' \n'
+    text = text[:-3]
+
+    write_text_to_s3(s3_resource, bucket, text, path)
+
+
+def main():
+    # get cli args
+    args = get_cli_args()
+
+    # setup config object
+    config = Config(args.config)
+    secrets = Secrets(args.secret)
+
+    # create newsapi client
+    api_key = secrets.GOOGLE_NEWS_API_KEY
+    client = create_newsapi_client(api_key)
+
+    # requesst articles
+    articles = query_articles(
+        client,
+        args.keywords,
+        args.start_date,
+        args.end_date)
+    print(f"Retrieved {len(articles)} Articles")
+
+    # upload to s3
+    s3_resource = create_s3_resource(region_name='us-east-1')
+    bucket = config.DEFAULT_BUCKET
+    upload_articles_to_s3(s3_resource, bucket, args.topic, articles)
+
+
+if __name__ == '__main__':
+    main()
