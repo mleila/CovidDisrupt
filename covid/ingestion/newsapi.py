@@ -41,7 +41,8 @@ def query_articles(
                 language='en',
                 page=page)
 
-        except NewsAPIException:
+        except NewsAPIException as e:
+            print(e)
             break
 
         articles += page_results['articles']
