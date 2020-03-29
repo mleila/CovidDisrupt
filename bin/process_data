@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import argparse
 
 from covid.config import Config
@@ -47,6 +48,10 @@ def main():
     # upload clean data to s3
     s3_prefix = f'processed/{args.topic}/articles.txt'
     s3.Bucket(bucket).upload_file(PROCESSED_FILE, s3_prefix)
+
+    # clean up
+    os.remove(RAW_FILE)
+    os.remove(PROCESSED_FILE)
 
 
 if __name__ == '__main__':
