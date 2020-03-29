@@ -5,7 +5,7 @@ Discovery of COVID-19 cases leads to local responses that may lead to supply cha
 
 # Installtion
 Use the following command to install the package to your local python environment. The installation will add all necessary binaries to your path.
- 
+
 `pip install CovidDisrupt`
 
 # Usage
@@ -17,4 +17,9 @@ ingest_data \
     --keywords 'corona OR covid OR coronavirus' \
     --start-date '2020-02-26' \
     --end-date '2020-03-29'
+```
+## Processing
+Process ingested data to prepare it for analysis.
+```bash
+process_data --topic 'covid'
 ```
