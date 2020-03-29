@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+import argparse
+
+from covid.config import Config
+from covid.utils.aws import create_s3_resource
+from covid.transformations.text_cleaning import clean_articles
+
+RAW_FILE = 'raw_articles.txt'
+PROCESSED_FILE = 'clean_articles.txt'
+
+
+def get_cli_args():
+    parser = argparse.ArgumentParser(description='Data Ingestion Tool')
+    parser.add_argument('-t', '--topic', type=str)
+
+    # default
+    parser.add_argument('--config', type=str, default='config.json')
+
+    return parser.parse_args()
+
+
+def main():
+    # get cli args
+    args = get_cli_args()
+
+    # setup config object
+    config = Config(args.config)
+    bucket = config.DEFAULT_BUCKET
+
+    # create s3 resource
+    s3 = create_s3_resource(region_name='us-east-1')
+
+    # download raw data from s3
+    prefix = f'raw/{args.topic}/articles.txt'
+    s3.Bucket(bucket).download_file(prefix, RAW_FILE)
+
+    # process raw data locally
+    with open(RAW_FILE, 'r') as f:
+        raw_articles = f.readlines()
+        cleaned_articles = clean_articles(raw_articles)
+
+    # write cleaned data to local file
+    with open(PROCESSED_FILE, 'w') as f:
+        for line in cleaned_articles:
+            f.writelines(line)
+
+    # upload clean data to s3
+    s3_prefix = f'processed/{args.topic}/articles.txt'
+    s3.Bucket(bucket).upload_file(PROCESSED_FILE, s3_prefix)
+
+
+if __name__ == '__main__':
+    main()
