@@ -1,0 +1,75 @@
+body {
+    background-color: white;
+    color: white;
+}
+
+.main-header {
+    background-color: black;
+}
+
+.main-header .banner {
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: azure;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: bolder;
+}
+
+.main-page {
+    height: 90%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 2%;
+    background-color: black;
+    border-radius: 2%;
+    border-style: solid;
+    border-color: black;
+}
+
+.page {
+    width: 100%;
+}
+
+.dropdown {
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 12px;
+    color: black;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    vertical-align: middle;
+    background: rgba(0,0,0,0);
+    position: relative;
+    width: 200px;
+}
+
+.dropdown .Select-value {
+    background-color: black;
+    border-color: black;
+}
+
+.dropdown .Select-value .Select-value-label {
+    font-weight: 500;
+    color: whitesmoke !important;
+    border-color: green !important;
+}
+
+
+.control-panel {
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+
+.dropdown-label {
+    margin-left: 10%;
+    padding-top: 1%;
+    vertical-align: middle;
+}
+
+.button {
+    width: 200px;
+}
