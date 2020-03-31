@@ -6,15 +6,18 @@ import plotly
 import plotly.graph_objs as go
 
 
-def plotly_wordcloud(text: str) -> plotly.graph_objs._figure.Figure:
+def plotly_wordcloud(
+        text: str,
+        max_words: int = 100,
+        max_font_size: int = 50) -> plotly.graph_objs._figure.Figure:
     """
     Credit to Prashant Saikia
     (https://github.com/PrashantSaikia/Wordcloud-in-Plotly)
     The function is copied with minor adaptations.
     """
     wc = WordCloud(stopwords=set(STOPWORDS),
-                   max_words=100,
-                   max_font_size=50)
+                   max_words=max_words,
+                   max_font_size=max_font_size)
     wc.generate(text)
 
     word_list = []
