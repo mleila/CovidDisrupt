@@ -43,7 +43,8 @@ def main():
     # write cleaned data to local file
     with open(PROCESSED_FILE, 'w') as f:
         for line in cleaned_articles:
-            f.writelines(line)
+            f.write(line)
+            f.write("\n")
 
     # upload clean data to s3
     s3_prefix = f'processed/{args.topic}/articles.txt'
