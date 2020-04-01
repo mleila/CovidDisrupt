@@ -45,3 +45,15 @@ def general_sentiment(data):
     res['mean_mixed_sent'] = np.mean(
         [r['sentiment_scores']['Neutral'] for r in data])
     return res
+
+
+def load_embeddings(topic):
+    """
+    Load TSNE 2D Embeddings generated from fitting BlazingText on the news articles.
+    """
+    print(topic)
+    embeddings = pickle.load(
+        open(f'covidash/data/{topic}/blazing_text/embeddings.pickle', 'rb'))
+    labels = pickle.load(
+        open(f'covidash/data/{topic}/blazing_text/labels.pickle', 'rb'))
+    return embeddings, labels
