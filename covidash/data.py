@@ -58,4 +58,5 @@ def load_embeddings(topic):
         open(f'covidash/data/{topic}/blazing_text/embeddings.pickle', 'rb'))
     labels = pickle.load(
         open(f'covidash/data/{topic}/blazing_text/labels.pickle', 'rb'))
+    embeddings = embeddings[:len(labels), :]
     return embeddings, labels
