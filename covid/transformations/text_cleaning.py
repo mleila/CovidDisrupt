@@ -25,6 +25,7 @@ def remove_punct(text: str):
             .replace("'", '')
             .replace(")", '')
             .replace("(", '')
+            .replace("</s>", '')
             )
     # remove single character words
     text = ' '.join([word for word in text.split() if len(word) > 1])
