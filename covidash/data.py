@@ -1,6 +1,7 @@
 """
 This module provides functionality for the Dash app to load data.
 """
+import os
 import pickle
 
 import numpy as np
@@ -11,7 +12,8 @@ def load_topics():
     """
     Load list of available topics.
     """
-    return ['covid']
+    path = 'covidash/data'
+    return [n for n in os.listdir(path) if os.path.isdir(os.path.join(path, n))]
 
 
 def load_processed_dataset(topic):
