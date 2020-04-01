@@ -23,3 +23,8 @@ Process ingested data to prepare it for analysis.
 ```bash
 process_data --topic 'covid'
 ```
+## Modelling
+Train ML models, or run inference pipleines, on the data using AWS SageMaker (BlazingText) and AWS Comprehend
+```bash
+model_data --topic 'covid' --words 50
+```
