@@ -45,7 +45,7 @@ def general_sentiment(data):
     res['mean_neutral_sent'] = np.mean(
         [r['sentiment_scores']['Neutral'] for r in data])
     res['mean_mixed_sent'] = np.mean(
-        [r['sentiment_scores']['Neutral'] for r in data])
+        [r['sentiment_scores']['Mixed'] for r in data])
     return res
 
 
