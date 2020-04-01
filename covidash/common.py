@@ -1,6 +1,7 @@
 """
 This module hosts common components
 """
+import plotly.express as px
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
@@ -12,7 +13,8 @@ from covidash.data import (
     load_processed_dataset,
     load_topic_comprehend,
     load_topics,
-    general_sentiment)
+    general_sentiment,
+    load_embeddings)
 
 
 def make_header():
@@ -140,3 +142,45 @@ def make_sentiment_dashboard(topic):
             dbc.Col([gauge4])
         ]),
     ])
+
+
+def make_tsne_plot(topic):
+    """
+    Plotly scatter plot
+    """
+    embeddings, labels = load_embeddings(topic)
+    x, y = embeddings[:, 0], embeddings[:, 1]
+    figure = px.scatter(
+        x=x,
+        y=y,
+        text=labels,
+        opacity=0.0)
+    figure.update_layout(
+        margin={
+            't': 0,
+            'b': 0,
+            'r': 0,
+            'l': 0
+        },
+        yaxis={
+            'showgrid': False,
+            'zeroline': False,
+            'showticklabels': False,
+            'title': ''
+        },
+        xaxis={
+            'showgrid': False,
+            'zeroline': False,
+            'showticklabels': False,
+            'title': ''
+        },
+        font={
+            "size": 12,
+            "color": "rgb(33,165,133)"
+        },
+        width=500,
+        height=400,
+        paper_bgcolor='rgba(0, 0, 0, 0)',
+        plot_bgcolor='rgba(0,0,0,0)'
+    )
+    return dcc.Graph(id='tsne-graph', figure=figure)
