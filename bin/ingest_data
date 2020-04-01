@@ -34,6 +34,8 @@ def upload_articles_to_s3(
     path = f'raw/{topic}/articles.txt'
     text = ''
     for article in articles:
+        if article['description'] is None:
+            continue
         text += article['description'] + ' \n'
     text = text[:-3]
 
