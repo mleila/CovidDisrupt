@@ -37,3 +37,6 @@ Train ML models, or run inference pipleines, on the data using AWS SageMaker (Bl
 ```bash
 model_data --topic 'covid' --words 50
 ```
+# Demo
+![alt text](https://github.com/mleila/CovidDisrupt/blob/master/assets/giffs/dash_example.gif)
+
