@@ -1,0 +1,5 @@
+{
+    "DEFAULT_BUCKET": "your s3 buceket",
+    "DEFAULT_REGION": "your AWS region",
+    "SM_ROLE": "ARN of your SM Role"
+}
