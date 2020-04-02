@@ -8,6 +8,15 @@ Use the following command to install the package to your local python environmen
 
 `pip install CovidDisrupt`
 
+# Configuration
+Create a `config.json` and `secrets.json` from their templates.
+```bash
+mv secrets.template.json secrets.json
+mv config.template.json config.json
+```
+Add your AWS credentials and News API key to the config and secrets json files.
+
+
 # Usage
 ## Ingestion
 For now, NewsApi is the only supported API. To ingest data to s3 use the following command
