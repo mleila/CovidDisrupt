@@ -42,5 +42,5 @@ To visualize the results, run the Dash application
 ```python
 python covidash/index.py
 ```
-![alt text](https://github.com/mleila/CovidDisrupt/blob/master/assets/giffs/dash_example.gif)
+![alt text](https://github.com/mleila/CovidDisrupt/blob/master/assets/covid_demo.gif)
 
