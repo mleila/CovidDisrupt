@@ -58,5 +58,7 @@ def load_embeddings(topic):
         open(f'covidash/data/{topic}/blazing_text/embeddings.pickle', 'rb'))
     labels = pickle.load(
         open(f'covidash/data/{topic}/blazing_text/labels.pickle', 'rb'))
+    if '</s>' in labels:
+        labels.remove('</s>')
     embeddings = embeddings[:len(labels), :]
     return embeddings, labels
