@@ -18,7 +18,7 @@ Click==7.0
 colorama==0.4.1
 coloredlogs==10.0
 -e git+git@github.com:mleila/CovidDisrupt.git@271e62692d3900bc26f3de700c13caaab44d8707#egg=covid
-cryptography==3.2
+cryptography==3.3.2
 cycler==0.10.0
 dash==1.9.1
 dash-bootstrap-components==0.9.1
