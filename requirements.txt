@@ -121,7 +121,7 @@ svgutils==0.3.1
 svgwrite==1.2.1
 tb-nightly==1.14.0a20190301
 tenacity==5.0.3.dev12
-tensorflow==2.0.0a0
+tensorflow==2.7.2
 termcolor==1.1.0
 terminado==0.8.3
 testpath==0.4.4
