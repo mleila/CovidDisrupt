@@ -88,7 +88,7 @@ Pillow==7.0.0
 plotly==4.5.4
 prometheus-client==0.7.1
 prompt-toolkit==3.0.5
-protobuf==3.7.1
+protobuf==3.18.3
 protobuf3-to-dict==0.1.5
 ptyprocess==0.6.0
 py2neo==4.2.0
